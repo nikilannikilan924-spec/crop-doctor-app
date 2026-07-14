@@ -60,14 +60,15 @@ class PredictionService {
     });
 
     final best = crops.first;
+    final cropName = best['crop'] as String;
     final risk = _calculateRisk(best, temperature, humidity);
 
     return Prediction(
-      recommendedCrop: best['crop']!,
+      recommendedCrop: cropName,
       diseaseName: risk['disease'] ?? 'None',
       diseaseRisk: risk['level'] ?? 'Low',
-      preventionTipsEn: _tipsEn[best['crop']] ?? '',
-      preventionTipsTa: _tipsTa[best['crop']] ?? '',
+      preventionTipsEn: _tipsEn[cropName] ?? '',
+      preventionTipsTa: _tipsTa[cropName] ?? '',
       temperature: temperature,
       humidity: humidity,
       region: region,
@@ -107,19 +108,20 @@ class PredictionService {
     return nearest.key;
   }
 
-  Map<String, double> _calculateRisk(Map<String, dynamic> crop, double t, double h) {
+  Map<String, String> _calculateRisk(Map<String, dynamic> crop, double t, double h) {
     final rMin = (crop['risk_t_min'] as num).toDouble();
     final rMax = (crop['risk_t_max'] as num).toDouble();
     final rhMin = (crop['risk_h_min'] as num).toDouble();
     final rhMax = (crop['risk_h_max'] as num).toDouble();
+    final disease = crop['disease'] as String;
 
     if (t >= rMin && t <= rMax && h >= rhMin && h <= rhMax) {
-      return {'disease': crop['disease'], 'level': 'High'};
+      return {'disease': disease, 'level': 'High'};
     }
     if ((t >= rMin - 2 && t <= rMax + 2) && (h >= rhMin - 5 && h <= rhMax + 5)) {
-      return {'disease': crop['disease'], 'level': 'Medium'};
+      return {'disease': disease, 'level': 'Medium'};
     }
-    return {'disease': crop['disease'], 'level': 'Low'};
+    return {'disease': disease, 'level': 'Low'};
   }
 
   static const Map<String, Map<String, double>> _regionCentroids = {
