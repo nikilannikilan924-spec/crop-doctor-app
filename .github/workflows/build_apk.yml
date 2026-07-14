@@ -26,6 +26,7 @@ jobs:
           cp app_source/pubspec.yaml crop_doctor_build/pubspec.yaml
           cp -r app_source/assets crop_doctor_build/assets
           cp app_source/analysis_options.yaml crop_doctor_build/analysis_options.yaml
+          sed -i 's/compileSdkVersion 33/compileSdkVersion 34/' crop_doctor_build/android/app/build.gradle
 
       - name: Get dependencies
         run: flutter pub get
