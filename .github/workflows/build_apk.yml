@@ -26,7 +26,7 @@ jobs:
           cp app_source/pubspec.yaml crop_doctor_build/pubspec.yaml
           cp -r app_source/assets crop_doctor_build/assets
           cp app_source/analysis_options.yaml crop_doctor_build/analysis_options.yaml
-
+          sed -i 's/org.jetbrains.kotlin.android" version "[^"]*"/org.jetbrains.kotlin.android" version "1.9.0"/' crop_doctor_build/android/settings.gradle
 
       - name: Get dependencies
         run: flutter pub get
