@@ -264,7 +264,7 @@ class PredictionScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      _getPreventionText(loc),
+                      _getPreventionText(context, loc),
                       style: TextStyle(
                         fontSize: 14,
                         height: 1.5,
@@ -325,8 +325,8 @@ class PredictionScreen extends StatelessWidget {
     }
   }
 
-  String _getPreventionText(AppLocalizations loc) {
-    final locale = Localizations.localeOf(loc);
+  String _getPreventionText(BuildContext context, AppLocalizations loc) {
+    final locale = Localizations.localeOf(context);
     if (locale.languageCode == 'ta' && prediction.preventionTipsTa.isNotEmpty) {
       return prediction.preventionTipsTa;
     }
