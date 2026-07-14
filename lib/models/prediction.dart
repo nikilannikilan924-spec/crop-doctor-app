@@ -1,3 +1,5 @@
+import 'package:flutter/painting.dart';
+
 class Prediction {
   final String recommendedCrop;
   final String diseaseName;

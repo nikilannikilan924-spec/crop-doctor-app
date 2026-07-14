@@ -131,7 +131,7 @@ class PredictionService {
     'Madurai': {'lat': 9.93, 'lng': 78.12},
   };
 
-  static const List<Map<String, dynamic>> _regionCrops = {
+  static const Map<String, List<Map<String, dynamic>>> _regionCrops = {
     'Namakkal': [
       {'crop': 'Onion', 'temp_min': 25, 'temp_max': 35, 'hum_min': 60, 'hum_max': 85, 'disease': 'Purple Blotch', 'risk_t_min': 28, 'risk_t_max': 35, 'risk_h_min': 70, 'risk_h_max': 90},
       {'crop': 'Tomato', 'temp_min': 22, 'temp_max': 34, 'hum_min': 55, 'hum_max': 80, 'disease': 'Early Blight', 'risk_t_min': 25, 'risk_t_max': 32, 'risk_h_min': 75, 'risk_h_max': 90},
